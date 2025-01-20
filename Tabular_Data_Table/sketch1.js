@@ -1,3 +1,5 @@
+// Yearly Data
+
 const weatherURL = "https://raw.githubusercontent.com/fivethirtyeight/data/master/us-weather-history/KNYC.csv"
 
 let weatherTable
