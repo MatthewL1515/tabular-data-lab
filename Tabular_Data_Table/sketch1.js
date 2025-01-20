@@ -2,7 +2,18 @@
 
 // Data Site: https://github.com/fivethirtyeight/data/blob/master/us-weather-history/KNYC.csv
 
+
+
+// Variables
 const weatherURL = "https://raw.githubusercontent.com/fivethirtyeight/data/refs/heads/master/us-weather-history/KNYC.csv"
+
+  // Array variables
+  let tempsMax = []
+  let tempsMin = []
+  
+  // Initialized Variables
+  let minTemp = -Infinity
+  let maxTemp = Infinity
 
 function preload() {
   weatherTable = loadTable(weatherURL,'csv','header')
@@ -17,4 +28,6 @@ function draw() {
   background(220)
   stroke(0)
   fill(0)
+  
+  const temp = weathertable.getNum(currentRow,currentColumn)
 }
