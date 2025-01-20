@@ -19,9 +19,26 @@ function preload() {
   weatherTable = loadTable(weatherURL,'csv','header')
 }
 
-function canvas() {
+function setup() {
   createCanvas(400,400)
   noLoop()
+  
+  // Extract Temp. Data
+  for (let i = 0; i < weatherTable.getRowCount(); i++) {
+    // Need to make more variables for max and min temps
+    let maxT = weatherTable.getNum(i, "actual_max_temp")
+    let minT = weatherTable.getNum(i, "actual_min_temp")
+    
+    // Add new variables into array
+    tempsMax.push(maxT)
+    tempsMin.push(minT)
+    
+    // Track the temperatures
+    if (maxT > maxTemp)
+      maxTemp = maxT
+    if (minT < minTemp)
+      minTemp = minT
+  }
 }
 
 function draw() {
@@ -29,5 +46,4 @@ function draw() {
   stroke(0)
   fill(0)
   
-  const temp = weathertable.getNum(currentRow,currentColumn)
 }
