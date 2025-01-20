@@ -44,12 +44,11 @@ function draw() {
   // Spacing btween points
   let dx = width / tempsMax.length
   
+  // For drawing data points
   for (let i = 0; i < tempsMax.length; i++) {
-    let tMax = tempsMax[i]
-    let tMin = tempsMin[i]
     let x = (i + 1) * dx
-    let yMax = map(tMax, minTemp, maxTemp, height - 50, 50)
-    let yMin = map(tMin, minTemp, maxTemp, height - 50, 50)
+    let yMax = map(tempsMax[i], minTemp, maxTemp, height - 50, 50)
+    let yMin = map(tempsMin[i], minTemp, maxTemp, height - 50, 50)
     
     // Draw points onto screen
       // Max
@@ -61,4 +60,33 @@ function draw() {
     point(x, yMin)
     
   }
+  
+  // Drawing lines to connect data points
+  stroke("red")
+  noFill()
+  beginShape()
+  for (let i = 0; i < tempsMax.length; i++) {
+    let x = (i + 1) * (width / tempsMax.length)
+    let yMax = map(tempsMax[i], minTemp, maxTemp, height - 50, 50)
+    vertex(x, yMax)
+  }
+  endShape()
+  
+  stroke("blue")
+  noFill()
+  beginShape()
+  for (let i = 0; i < tempsMin.length; i++) {
+    let x = (i + 1) * (width / tempsMin.length)
+    let yMax = map(tempsMin[i], minTemp, maxTemp, height - 50, 50)
+    vertex(x, yMax)
+  }
+  endShape()
+  
+  // Label Max_Temp as red and Min_Temp as blue
+  noStroke()
+  textAlign(LEFT,CENTER)
+  fill('red')
+  text("Max Temp.", 20, 30)
+  fill('blue')
+  text("Min Temp.", 20, height - 30)
 }
