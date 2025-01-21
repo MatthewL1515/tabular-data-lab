@@ -24,7 +24,7 @@ function setup() {
   
   // Extract Temperature data for each row
   for (let i = 0; i < weatherTable.getRowCount(); i++) {
-    let dataStr = weatherTable.getString(i, "date")
+    let dateStr = weatherTable.getString(i, "date")
     let maxT = weatherTable.getNum(i, "actual_max_temp")
     let minT = weatherTable.getNum(i, "actual_min_temp")
     
@@ -33,8 +33,8 @@ function setup() {
     
     // Store in the seperate arrays
     months.push(month)
-    maxTemps.push(maxT)
-    minTemps.push(minT)
+    tempsMax.push(maxT)
+    tempsMin.push(minT)
     
     // Track min and max temperatures
     if (maxT > maxTemp) {
@@ -49,4 +49,6 @@ function setup() {
 
 function draw() {
   background(220)
+  
+  
 }
