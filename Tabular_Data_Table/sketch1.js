@@ -12,12 +12,16 @@ let tempsMin = []
 let minTemp = Infinity
 let maxTemp = -Infinity
 
+// Color Variables
+let r = 'red'
+let b = 'blue'
+
 function preload() {
   weatherTable = loadTable(weatherURL,'csv','header')
 }
 
 function setup() {
-  createCanvas(400,400)
+  createCanvas(500,500)
   noLoop()
   
   // Extract Temp. Data
@@ -41,6 +45,11 @@ function setup() {
 }
 
 function draw() {
+  // Other frequently used variables
+  let h = height - 50
+  let d = 50
+  let m = 20
+  
   background(220)
 
   // Spacing btween points
@@ -49,37 +58,37 @@ function draw() {
   // For drawing data points
   for (let i = 0; i < tempsMax.length; i++) {
     let x = (i + 1) * dx
-    let yMax = map(tempsMax[i], minTemp, maxTemp, height - 50, 50)
-    let yMin = map(tempsMin[i], minTemp, maxTemp, height - 50, 50)
+    let yMax = map(tempsMax[i], minTemp, maxTemp, h, d) // See other variables
+    let yMin = map(tempsMin[i], minTemp, maxTemp, h, d)
     
     // Draw points onto screen
       // Max
-    stroke("red")
+    stroke(r)
     point(x, yMax)
     
       // Min
-    stroke("blue")
+    stroke(b)
     point(x, yMin)
     
   }
   
   // Drawing lines to connect data points
-  stroke("red")
+  stroke(r)
   noFill()
   beginShape()
   for (let i = 0; i < tempsMax.length; i++) {
     let x = (i + 1) * (width / tempsMax.length)
-    let yMax = map(tempsMax[i], minTemp, maxTemp, height - 50, 50)
+    let yMax = map(tempsMax[i], minTemp, maxTemp, h, d)
     vertex(x, yMax)
   }
   endShape()
   
-  stroke("blue")
+  stroke(b)
   noFill()
   beginShape()
   for (let i = 0; i < tempsMin.length; i++) {
     let x = (i + 1) * (width / tempsMin.length)
-    let yMax = map(tempsMin[i], minTemp, maxTemp, height - 50, 50)
+    let yMax = map(tempsMin[i], minTemp, maxTemp, h, d)
     vertex(x, yMax)
   }
   endShape()
@@ -87,8 +96,8 @@ function draw() {
   // Label Max_Temp as red and Min_Temp as blue
   noStroke()
   textAlign(LEFT,CENTER)
-  fill('red')
-  text("Max Temp.", 20, 30)
-  fill('blue')
-  text("Min Temp.", 20, height - 30)
+  fill(r)
+  text("Max Temp.", m, 30) // See other variables for 'm'
+  fill(b)
+  text("Min Temp.", m, height - 30)
 }
