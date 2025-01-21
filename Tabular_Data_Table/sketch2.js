@@ -41,7 +41,7 @@ function setup() {
       maxTemp = maxT
     }
     
-    if (minT > minTemp) {
+    if (minT < minTemp) {
       minTemp = minT
     }
   }
@@ -82,7 +82,7 @@ function draw() {
   beginShape()
   for (let i = 0; i < filterMaxTemps.length; i++) {
     let x = (i + 1) * dx
-    let yMax = map(filterMaxTemps[i], tempsMin, tempsMax, h, c)
+    let yMax = map(filterMaxTemps[i], minTemp, maxTemp, h, c)
     vertex(x, yMax)
   }
   endShape()
@@ -93,7 +93,7 @@ function draw() {
   beginShape()
   for (let i = 0; i < filterMinTemps.length; i++) {
     let x = (i + 1) * dx
-    let yMin = map(filterMinTemps[i], tempsMin, tempsMax, h, c)
+    let yMin = map(filterMinTemps[i], minTemp, maxTemp, h, c)
     vertex(x, yMin)
   }
   endShape()
