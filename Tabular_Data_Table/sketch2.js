@@ -100,5 +100,18 @@ function draw() {
   
   // Instructions for a reader for pushing buttons
   fill(0)
+  noStroke()
   text("Press Left/Right arrow button to change month please", w, height - 20)
+}
+
+function keyPressed() {
+  // Add 1 Month
+  if (keyCode === RIGHT_ARROW) {
+    selectedMonth = (selectedMonth % 12) + 1
+    // the % sign basically gives the remainder, so if someone jams the right arrow, the variable selected month can still calculate between 1 and 12 even if it's higher than that value
+  }
+  if (keyCode === LEFT_ARROW) {
+    selectedMonth = (selectedMonth - 2 + 12 ) % 12 + 1
+  }
+  redraw()
 }
