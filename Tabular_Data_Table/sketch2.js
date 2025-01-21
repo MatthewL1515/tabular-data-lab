@@ -14,6 +14,10 @@ let minTemp = Infinity
 let maxTemp = -Infinity
 let selectedMonth = 1
 
+// Color Variables
+let r = "red"
+let b = "blue"
+
 function preload() {
   weatherTable = loadTable(weatherURL, 'csv', 'header')
 }
@@ -52,6 +56,8 @@ function draw() {
   let h = height - 50
   let w = width / 2
   let c = 50
+  let d = 20
+  let m = 30
   
   background(220)
   
@@ -74,10 +80,10 @@ function draw() {
   textAlign(CENTER,CENTER)
   
   // Later button pressing will update variable 'selectedMonth'
-  text(`Actual Min & Max Temperature - Month ${selectedMonth}`, w, 30)
+  text(`Actual Min & Max Temperature - Month ${selectedMonth}`, w, m)
   
   // Draw max temp line in red
-  stroke("red")
+  stroke(r)
   noFill()
   beginShape()
   for (let i = 0; i < filterMaxTemps.length; i++) {
@@ -88,7 +94,7 @@ function draw() {
   endShape()
   
   // Draw blue line now for min temp line
-  stroke("blue")
+  stroke(b)
   noFill()
   beginShape()
   for (let i = 0; i < filterMinTemps.length; i++) {
@@ -105,12 +111,11 @@ function draw() {
   
   // Label Max_Temp as red and Min_Temp as blue
   noStroke()
-  let b = 20 //constant value for width position
   textAlign(LEFT,CENTER)
-  fill('red')
-  text("Max Temp.", b, 30)
-  fill('blue')
-  text("Min Temp.", b, 60)
+  fill(r)
+  text("Max Temp.", d, m) //b is constant value for width position
+  fill(b)
+  text("Min Temp.", d, 60)
 }
 
 function keyPressed() {
