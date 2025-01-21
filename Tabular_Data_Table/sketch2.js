@@ -102,6 +102,15 @@ function draw() {
   fill(0)
   noStroke()
   text("Press Left/Right arrow button to change month please", w, height - 20)
+  
+  // Label Max_Temp as red and Min_Temp as blue
+  noStroke()
+  let b = 20 //constant value for width position
+  textAlign(LEFT,CENTER)
+  fill('red')
+  text("Max Temp.", b, 30)
+  fill('blue')
+  text("Min Temp.", b, 60)
 }
 
 function keyPressed() {
