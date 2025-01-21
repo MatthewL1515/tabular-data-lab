@@ -48,7 +48,57 @@ function setup() {
 }
 
 function draw() {
+  // Other variables relevant for draw function
+  let h = height - 50
+  let w = width / 2
+  let c = 50
+  
   background(220)
   
+  // Specific temperatures on a specific month
+  let filterMaxTemps = []
+  let filterMinTemps = []
   
+  for (let i = 0; i < months.length; i++) {
+    if (months[i] === selectedMonth) {
+      filterMaxTemps.push(tempsMax[i])
+      filterMinTemps.push(tempsMin[i])
+    }
+  }
+  
+  // Spacing
+  let dx = width / filterMaxTemps.length
+  
+  // Draw a title
+  fill(0)
+  textAlign(CENTER,CENTER)
+  
+  // Later button pressing will update variable 'selectedMonth'
+  text(`Actual Min & Max Temperature - Month ${selectedMonth}`, w, 30)
+  
+  // Draw max temp line in red
+  stroke("red")
+  noFill()
+  beginShape()
+  for (let i = 0; i < filterMaxTemps.length; i++) {
+    let x = (i + 1) * dx
+    let yMax = map(filterMaxTemps[i], tempsMin, tempsMax, h, c)
+    vertex(x, yMax)
+  }
+  endShape()
+  
+  // Draw blue line now for min temp line
+  stroke("blue")
+  noFill()
+  beginShape()
+  for (let i = 0; i < filterMinTemps.length; i++) {
+    let x = (i + 1) * dx
+    let yMin = map(filterMinTemps[i], tempsMin, tempsMax, h, c)
+    vertex(x, yMin)
+  }
+  endShape()
+  
+  // Instructions for a reader for pushing buttons
+  fill(0)
+  text("Press Left/Right arrow button to change month please", w, height - 20)
 }
